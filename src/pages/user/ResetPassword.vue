@@ -11,7 +11,14 @@
           :rules="[val => (val && val.length >= 6) || 'Password is required']"
         >
           <template v-slot:append>
-            <q-btn @click="showPass" round dense flat color="primary" icon="visibility" />
+            <q-btn
+              @click="showPass"
+              round
+              dense
+              flat
+              color="primary"
+              :icon="viewPass ? 'visibility' : 'visibility_off'"
+            />
           </template>
         </q-input>
 
