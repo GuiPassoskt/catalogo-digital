@@ -5,10 +5,15 @@
       <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-md">
         <q-input
           label="New Password"
+          :type="viewPass ? 'text' : 'password'"
           v-model="password"
           lazy-rules
           :rules="[val => (val && val.length >= 6) || 'Password is required']"
-        />
+        >
+          <template v-slot:append>
+            <q-btn @click="showPass" round dense flat color="primary" icon="visibility" />
+          </template>
+        </q-input>
 
         <div class="full-width q-pt-md q-gutter-y-sm">
           <q-btn label="Send New Password" color="primary" class="full-width" outline rounded type="submit" />
@@ -35,6 +40,12 @@ export default defineComponent({
 
     const password = ref('');
 
+    const viewPass = ref(false);
+
+    const showPass = () => {
+      viewPass.value = !viewPass.value;
+    };
+
     const handlePasswordReset = async () => {
       try {
         await resetPassword(token, password.value);
@@ -47,7 +58,9 @@ export default defineComponent({
 
     return {
       password,
+      viewPass,
       handlePasswordReset,
+      showPass,
     };
   },
 });

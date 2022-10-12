@@ -2,7 +2,7 @@
   <q-dialog :full-width="$q.platform.is.mobile" :model-value="show" @before-hide="handleClose">
     <q-card>
       <q-card-section>
-        <div class="text-h6">Details</div>
+        <div class="text-h6">Detailhes do Produto</div>
       </q-card-section>
 
       <q-card-section v-if="product.img_url">
@@ -20,8 +20,14 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn label="Cancel" color="primary" outline v-close-popup />
-        <q-btn v-if="brand.phone" label="Buy on whatsapp" icon="mdi-whatsapp" color="green-7" @click="handleSendWpp" />
+        <q-btn label="Cancelar" color="primary" outline v-close-popup />
+        <q-btn
+          v-if="brand.phone"
+          label="Compre pelo whatsapp"
+          icon="mdi-whatsapp"
+          color="green-7"
+          @click="handleSendWpp"
+        />
       </q-card-actions>
     </q-card>
   </q-dialog>

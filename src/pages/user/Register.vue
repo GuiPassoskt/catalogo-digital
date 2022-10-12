@@ -20,10 +20,15 @@
 
         <q-input
           label="Password"
+          :type="viewPass ? 'text' : 'password'"
           v-model="form.password"
           lazy-rules
           :rules="[val => (val && val.length >= 6) || 'Password is required and 6 characters']"
-        />
+        >
+          <template v-slot:append>
+            <q-btn @click="showPass" round dense flat color="primary" icon="visibility" />
+          </template>
+        </q-input>
 
         <div class="full-width q-pt-md q-gutter-y-sm">
           <q-btn label="Register" color="primary" class="full-width" outline rounded type="submit" />
@@ -58,6 +63,12 @@ export default defineComponent({
       meta: {},
     });
 
+    const viewPass = ref(false);
+
+    const showPass = () => {
+      viewPass.value = !viewPass.value;
+    };
+
     const handleRegister = async () => {
       try {
         await register(form.value);
@@ -73,7 +84,9 @@ export default defineComponent({
 
     return {
       form,
+      viewPass,
       handleRegister,
+      showPass,
     };
   },
 });

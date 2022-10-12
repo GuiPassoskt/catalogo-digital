@@ -13,10 +13,16 @@
 
         <q-input
           label="Password"
+          :type="viewPass ? 'text' : 'password'"
           v-model="form.password"
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Password is required']"
-        />
+          bottom-slot
+        >
+          <template v-slot:append>
+            <q-btn @click="showPass" round dense flat color="primary" icon="visibility" />
+          </template>
+        </q-input>
 
         <div class="full-width q-pt-md">
           <q-btn label="Login" color="primary" class="full-width" outline rounded type="submit" />
@@ -58,6 +64,12 @@ export default defineComponent({
       password: '',
     });
 
+    const viewPass = ref(false);
+
+    const showPass = () => {
+      viewPass.value = !viewPass.value;
+    };
+
     onMounted(() => {
       if (isLoggedIn()) {
         router.push({ name: 'me' });
@@ -76,7 +88,9 @@ export default defineComponent({
 
     return {
       form,
+      viewPass,
       handleLogin,
+      showPass,
     };
   },
 });
