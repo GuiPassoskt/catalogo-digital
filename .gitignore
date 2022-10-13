@@ -33,6 +33,6 @@ yarn-error.log*
 *.sln
 
 # Build Files and
-*.tsbuildinfo
 package-lock.json
 yarn.lock
+tsconfig.tsbuildinfo
