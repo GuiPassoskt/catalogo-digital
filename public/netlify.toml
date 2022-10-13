@@ -6,5 +6,5 @@
 [[redirects]]
   from = "/*"
   to = "/product-public"
-  status = 200
+  status = 301
   query = {id = ":id"}
